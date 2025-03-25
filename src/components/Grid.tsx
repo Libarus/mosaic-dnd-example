@@ -5,10 +5,10 @@ import { Tile } from '../types';
 
 export const Grid: React.FC = () => {
     const tiles = useGameStore((state) => state.tiles);
-    const cellSize = 60;
+    const cellSize = 63;
 
     return (
-        <div className="grid grid-cols-5 gap-1 bg-gray-200 p-2 rounded-lg" style={{ width: `${cellSize * 10 + 40}px` }}>
+        <div className="grid grid-cols-10 gap-0 bg-gray-200 p-2 m-0" style={{ width: `${60 * 10 + 40}px` }}>
             {tiles.map((tile: Tile, index: number) => {
                 return <Cell key={index} index={index} size={cellSize} tile={tile} />;
             })}

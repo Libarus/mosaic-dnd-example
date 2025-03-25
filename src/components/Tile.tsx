@@ -23,7 +23,7 @@ export const Tile: React.FC<TileProps> = ({ tile, size, index }) => {
             className={`
                 w-full h-full flex items-center justify-center
                 bg-blue-500 text-white font-bold text-xl
-                rounded-lg cursor-move
+                cursor-move
                 ${isDragging ? 'opacity-0' : 'opacity-100'}
                 hover:bg-blue-600 transition-colors
             `}

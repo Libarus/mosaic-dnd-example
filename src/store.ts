@@ -11,7 +11,7 @@ interface GameState {
 const createInitialTiles = (): Tile[] => {
     const tiles: Tile[] = [];
 
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 100; i++) {
         tiles.push({
             id: i + 1001,
             value: i + 1,
@@ -44,34 +44,5 @@ export const useGameStore = create<GameState>((set, get) => ({
         tiles[index2] = {...old};
 
         set({ tiles, isComplete: false });
-
-        // const tileFrom = tiles.find(t => t.id === tileId); // нашли по ID нужый тайл
-        // if (tileFrom == null) return;
-
-        // const tileTo = tiles.find(t => t.currentPosition === newPosition); // нашли по ID нужый тайл
-        // if (tileTo == null) return;
-
-        // console.log(tileFrom);
-        // console.log(tileTo);
-
-        // const pos1 = tileFrom.currentPosition;
-        // const pos2 = tileTo.currentPosition;
-        // console.log(`${pos1} swap ${pos2}`);
-
-        // tileFrom.currentPosition = pos2;
-        // tileTo.currentPosition = pos1;
-
-        // const tileToMove = tiles.find((t) => t.id === tileId);
-        // const tileAtNewPosition = tiles.find((t) => t.currentPosition === newPosition);
-
-        // if (tileToMove && tileAtNewPosition) {
-        //     // Swap positions
-        //     const oldPosition = tileToMove.currentPosition;
-        //     tileToMove.currentPosition = newPosition;
-        //     tileAtNewPosition.currentPosition = oldPosition;
-
-        //     const isComplete = tiles.every((tile) => tile.currentPosition === tile.id);
-        //     set({ tiles, isComplete });
-        // }
     },
 }));
