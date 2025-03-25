@@ -4,9 +4,13 @@ import { Tile } from './types';
 interface GameState {
     tiles: Tile[];
     isComplete: boolean;
+    image: string;
+    tick: number;
     initializeGame: () => void;
     moveTile: (tileId: number, newPosition: number) => void;
 }
+
+let tickTimer: any;
 
 const createInitialTiles = (): Tile[] => {
     const tiles: Tile[] = [];
@@ -14,7 +18,7 @@ const createInitialTiles = (): Tile[] => {
     for (let i = 0; i < 100; i++) {
         tiles.push({
             id: i + 1001,
-            value: i + 1,
+            value: i,
         });
     }
 
@@ -28,10 +32,14 @@ const createInitialTiles = (): Tile[] => {
 export const useGameStore = create<GameState>((set, get) => ({
     tiles: [],
     isComplete: false,
+    image: '',
+    tick: 0,
 
     initializeGame: () => {
         const tiles = createInitialTiles();
-        set({ tiles, isComplete: false });
+        clearInterval(tickTimer);
+        tickTimer = setInterval(() => {  set({ tick: get().tick + 1 }); }, 1000);
+        set({ tiles, isComplete: false, image: `img00${Math.floor(Math.random() * 4) + 1}.jpg`, tick: 0 });
     },
 
     moveTile: (index1: number, index2: number) => {

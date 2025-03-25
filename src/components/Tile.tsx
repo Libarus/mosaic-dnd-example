@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDrag } from 'react-dnd';
 import { Tile as TileType } from '../types';
+import { Sprite } from './Sprite';
 
 interface TileProps {
     tile: TileType;
@@ -9,6 +10,10 @@ interface TileProps {
 }
 
 export const Tile: React.FC<TileProps> = ({ tile, size, index }) => {
+
+    const x = tile.value % 10;
+    const y = Math.floor(tile.value / 10);
+
     const [{ isDragging }, drag] = useDrag(() => ({
         type: 'tile',
         item: { index },
@@ -29,7 +34,7 @@ export const Tile: React.FC<TileProps> = ({ tile, size, index }) => {
             `}
             style={{ width: `${size}px`, height: `${size}px` }}
         >
-            {tile.value}
+            <Sprite x={x * size} y={y * size} width={size} height={size} />
         </div>
     );
 };
